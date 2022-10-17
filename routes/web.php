@@ -12,7 +12,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::middleware('auth')
+    ->namespace('admin')
+    ->name('admin.')
+    ->prefix('admin')
+    ->group(function () {
+        Route::get('/', 'HomeController@index')->name('home');
+        Route::get('/students', 'StudentsController@index')->name('students');
+        Route::resource('posts', 'PostController');
+        Route::resource('categories', 'CategoryController');
+    });
+
+
+Route::get("{any?}", function(){
+    return view("guest.welcome");
+})->where("any", ".*");
+
+
