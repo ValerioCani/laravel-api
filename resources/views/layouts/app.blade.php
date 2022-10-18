@@ -43,7 +43,8 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
-                            @else
+                        @else
+
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('admin.home')}}" role="button"  aria-haspopup="true" v-pre>
                                     Home Amministratori

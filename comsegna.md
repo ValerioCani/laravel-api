@@ -1,12 +1,8 @@
-Esercizio di oggi: Laravel Boolpress
-nome repo: laravel-auth
 
-Ciao ragazzi,
-creiamo con Laravel la nostra alternativa al più famoso CMS del modo: WordPress.
-Oggi iniziamo un nuovo progetto che si arricchirà nel corso delle prossime lezioni: man mano aggiungeremo funzionalità e vedremo la nostra applicazione crescere ed evolvere.
+Ciao ragazzi, continuate il lavoro dei giorni scorsi, ma cambiate il nome della repo da utilizzare!
+nome della nuova repo: laravel-api
 Nel pomeriggio, rifate ciò che abbiamo visto insieme stamattina stilando tutto a vostro piacere utilizzando Sass.
-
-
+Buon lavoro!
 
 
 
