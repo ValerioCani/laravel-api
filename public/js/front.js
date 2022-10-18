@@ -1947,7 +1947,8 @@ __webpack_require__.r(__webpack_exports__);
   name: 'MyMain',
   data: function data() {
     return {
-      posts: []
+      posts: [],
+      loading: true
     };
   },
   methods: {
@@ -1956,7 +1957,15 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/posts').then(function (response) {
         _this.posts = response.data.results;
+        _this.loading = false;
       });
+    },
+    truncateText: function truncateText(text, maxlength) {
+      if (text.length > maxlength) {
+        return text.substring(0, maxlength) + '...';
+      } else {
+        return text;
+      }
     }
   },
   mounted: function mounted() {
@@ -2054,19 +2063,33 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "container"
-  }, _vm._l(_vm.posts, function (post, index) {
+  }, [this.loading ? _c("div", {
+    staticClass: "d-flex justify-content-center"
+  }, [_vm._m(0)]) : _vm._l(_vm.posts, function (post, index) {
     return _c("div", {
       key: index,
       staticClass: "card p-3"
-    }, [_c("h2", [_vm._v(_vm._s(post.title))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(post.content))]), _vm._v(" "), _c("h4", [_vm._v(_vm._s(post.category ? post.category.name : "Nessuna categoria"))]), _vm._v(" "), _c("ul", _vm._l(post.tags, function (tag, index) {
+    }, [_c("h2", [_vm._v(_vm._s(post.title))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.truncateText(post.content, 100)))]), _vm._v(" "), _c("h4", [_vm._v(_vm._s(post.category ? post.category.name : "Nessuna categoria"))]), _vm._v(" "), _c("ul", _vm._l(post.tags, function (tag, index) {
       return _c("li", {
         key: index
       }, [_vm._v(_vm._s(tag.name))]);
     }), 0)]);
-  }), 0);
+  })], 2);
 };
 
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "spinner-border text-primary",
+    attrs: {
+      role: "status"
+    }
+  }, [_c("span", {
+    staticClass: "sr-only"
+  }, [_vm._v("Loading...")])]);
+}];
 render._withStripped = true;
 
 
