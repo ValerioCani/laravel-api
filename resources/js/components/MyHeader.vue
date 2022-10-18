@@ -4,14 +4,8 @@
             <a class="navbar-brand" href="#">Boolpress</a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Posts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Register</a>
+                    <li v-for="(link, index) in links" :key="index" class="nav-item active">
+                        <a class="nav-link" :href="link.link">{{link.label}}</a>
                     </li>
                 </ul>
             </div>

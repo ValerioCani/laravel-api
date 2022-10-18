@@ -1909,7 +1909,27 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'MyHeader'
+  name: 'MyHeader',
+  data: function data() {
+    return {
+      links: [{
+        label: 'Home',
+        link: '#'
+      }, {
+        label: 'Blog',
+        link: '#'
+      }, {
+        label: 'About Us',
+        link: '#'
+      }, {
+        label: 'Login',
+        link: '#'
+      }, {
+        label: 'Register',
+        link: '#'
+      }]
+    };
+  }
 });
 
 /***/ }),
@@ -1984,13 +2004,6 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _vm._m(0);
-};
-
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
   return _c("header", [_c("nav", {
     staticClass: "navbar navbar-expand-lg navbar-light bg-light"
   }, [_c("a", {
@@ -2005,29 +2018,20 @@ var staticRenderFns = [function () {
     }
   }, [_c("ul", {
     staticClass: "navbar-nav"
-  }, [_c("li", {
-    staticClass: "nav-item active"
-  }, [_c("a", {
-    staticClass: "nav-link",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("Posts")])]), _vm._v(" "), _c("li", {
-    staticClass: "nav-item"
-  }, [_c("a", {
-    staticClass: "nav-link",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("Login")])]), _vm._v(" "), _c("li", {
-    staticClass: "nav-item"
-  }, [_c("a", {
-    staticClass: "nav-link",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("Register")])])])])])]);
-}];
+  }, _vm._l(_vm.links, function (link, index) {
+    return _c("li", {
+      key: index,
+      staticClass: "nav-item active"
+    }, [_c("a", {
+      staticClass: "nav-link",
+      attrs: {
+        href: link.link
+      }
+    }, [_vm._v(_vm._s(link.label))])]);
+  }), 0)])])]);
+};
+
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -2054,7 +2058,11 @@ var render = function render() {
     return _c("div", {
       key: index,
       staticClass: "card p-3"
-    }, [_c("h2", [_vm._v(_vm._s(post.title))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(post.content))]), _vm._v(" "), _c("h4", [_vm._v(_vm._s(post.category ? post.category.name : "-"))])]);
+    }, [_c("h2", [_vm._v(_vm._s(post.title))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(post.content))]), _vm._v(" "), _c("h4", [_vm._v(_vm._s(post.category ? post.category.name : "Nessuna categoria"))]), _vm._v(" "), _c("ul", _vm._l(post.tags, function (tag, index) {
+      return _c("li", {
+        key: index
+      }, [_vm._v(_vm._s(tag.name))]);
+    }), 0)]);
   }), 0);
 };
 

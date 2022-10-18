@@ -3,7 +3,10 @@
         <div class="card p-3" v-for="(post, index) in posts" :key="index">
             <h2>{{post.title}}</h2>
             <p>{{post.content}}</p>
-            <h4>{{(post.category)?post.category.name:'-'}}</h4>
+            <h4>{{(post.category)?post.category.name:'Nessuna categoria'}}</h4>
+            <ul>
+                <li v-for="(tag, index) in post.tags" :key="index">{{tag.name}}</li>
+            </ul>
         </div>
     </div>
 </template>
