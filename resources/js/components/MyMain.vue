@@ -13,6 +13,19 @@
                 <li v-for="(tag, index) in post.tags" :key="index">{{tag.name}}</li>
             </ul>
         </div>
+        <nav>
+            <ul class="pagination">
+                <li class="page-item" :class="((currentPage == 1)?'disabled':'')"  >
+                    <a class="page-link" @click="getPosts(currentPage - 1)">Previous</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" >{{currentPage + '/' + lastPage}}</a>
+                </li>
+                <li class="page-item" :class="((currentPage == lastPage)?'disabled':'')">
+                    <a class="page-link" @click="getPosts(currentPage + 1)" >Next</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </template>
 
@@ -22,14 +35,23 @@
         data(){
             return{
                 posts:[],
+                currentPage: 1,
+                lastPage: null,
                 loading: true,
             }
         },
         methods:{
-            getPosts(){
-                axios.get('/api/posts')
+            getPosts(page){
+                this.loading = true;
+                axios.get('/api/posts', {
+                    params: {
+                        page: page
+                    }
+                })
                 .then((response)=>{
-                    this.posts = response.data.results;
+                    this.posts = response.data.results.data;
+                    this.currentPage = response.data.results.current_page;
+                    this.lastPage = response.data.results.last_page;
                     this.loading = false;
                 });
             },
@@ -43,7 +65,7 @@
             }
         },
         mounted(){
-            this.getPosts();
+            this.getPosts(1);
         },
     }
 </script>
